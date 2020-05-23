@@ -22,7 +22,7 @@ The program requires the following dependencies (easy to install using pip: pip3
 
 ## Dataset
 
-The dataset can be downloaded from [here](https://drive.google.com/file/d/1rRh_2oxTGPfbTt6yLVZQ8R7BQ-672uXY/view?usp=sharing)
+The dataset can be downloaded or used from [here](https://drive.google.com/file/d/1rRh_2oxTGPfbTt6yLVZQ8R7BQ-672uXY/view?usp=sharing)
 After downloading it can be extracted by:
 ```
 unzip src.zip
@@ -51,3 +51,5 @@ Here are some flags which could be useful. For more help and options, use ```pyt
 - --batch <number> : to change the training batch size (default = 32)
 - --epochs <number> : to change the number of epochs (default = 25)
 - --val <fraction> : to change the fraction of validation set out of total training set (default = 0.1)
+
+OR simply run the [jupyter notebook](RS_Image_Classification.ipynb) file in google colab (make sure that the ```src.zip``` file is in right place)
