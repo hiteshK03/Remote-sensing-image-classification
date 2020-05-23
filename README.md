@@ -22,7 +22,7 @@ The program requires the following dependencies (easy to install using pip: pip3
 
 ## Dataset
 
-The dataset can be downloaded from [here](https://drive.google.com/file/d/1BEmmtKygwxH6U3rNpUJrgH6YRhJIfmxC/view?usp=sharing)
+The dataset can be downloaded from [here](https://drive.google.com/file/d/1rRh_2oxTGPfbTt6yLVZQ8R7BQ-672uXY/view?usp=sharing)
 After downloading it can be extracted by:
 ```
 unzip src.zip
@@ -30,26 +30,15 @@ unzip src.zip
 The structure of extracted folder is shown below:
 ```bash
 src
-├── test
-│   ├── 1951.png
-│   ├── 1977.png
-│   ├── 1999.png
-│   └── testing.csv
+├── test [121 entries]
+│   ├── testing.csv
 ├── train
-│   ├── aircrafts
-│   │   ├── 1.png
-│   │   ├── 2.png
-│   │   └── 3.png
-│   ├── none
-│   │   ├── 1.png
-│   │   ├── 2.png
-│   │   └── 3.png
-│   ├── ships
-│   │   ├── 1.png
-│   │   ├── 2.png
-│   │   └── 3.png
+│   ├── aircrafts [500 entries]
+│   ├── none [500 entries]
+│   ├── ships [500 entries]
 │   └── training.csv
 ├── main.py
+├── utils_jnb.py
 └── utils.py
 ```
 ## Running
