@@ -1,11 +1,11 @@
+# Remote Sensing Image Classification
 ## Overview
 Transfer learning applied to train an image classifier for classifying remote sensing data into three classes:
 * aircrafts
 * ships
 * none
 
-# Remote Sensing Image Classification
-### Table of Contents
+## Table of Contents
 - [Installation](#installation)
 - [Dataset](#dataset)
 - [Running](#running)
