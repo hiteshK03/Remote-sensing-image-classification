@@ -11,7 +11,7 @@ Transfer learning applied to train an image classifier for classifying remote se
 - [Running](#running)
 
 ## Installation
-The program requires the following dependencies (easy to install using pip: pip3 install -r requirements.txt):
+The program requires the following dependencies (easy to install using pip: ```pip3 install -r requirements.txt```):
 * python 3.5
 * pytorch
 * numpy
