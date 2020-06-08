@@ -22,7 +22,7 @@ The program requires the following dependencies (easy to install using pip: ```p
 
 ## Dataset
 
-The dataset can be downloaded or used from [here](https://drive.google.com/file/d/1rRh_2oxTGPfbTt6yLVZQ8R7BQ-672uXY/view?usp=sharing)
+The dataset can be downloaded or used from [here](https://drive.google.com/file/d/1rRh_2oxTGPfbTt6yLVZQ8R7BQ-672uXY/view?usp=sharing)  
 After downloading it can be extracted by:
 ```
 unzip src.zip
@@ -43,7 +43,8 @@ src
 ```
 ## Running
 
-To train the model, simply run ```python3 main.py```. Once trained, you can test the results with ```python3 main.py --test True``` (make sure that you have a saved model file : ```model.pt``` before testing)
+To train the model, simply run ```python3 main.py```.  
+Once trained, you can test the results with ```python3 main.py --test True``` (make sure that you have a saved model file : ```model.pt``` before testing)
 
 Here are some flags which could be useful. For more help and options, use ```python3 main.py -h```:
 
@@ -52,4 +53,4 @@ Here are some flags which could be useful. For more help and options, use ```pyt
 - --epochs <number> : to change the number of epochs (default = 25)
 - --val <fraction> : to change the fraction of validation set out of total training set (default = 0.1)
 
-OR simply run the [jupyter notebook](RS_Image_Classification.ipynb) file in google colab (make sure that the ```src.zip``` file is in right place)
+(or) Simply run the [jupyter notebook](RS_Image_Classification.ipynb) file in google colab (make sure that the ```src.zip``` file is in right place)
