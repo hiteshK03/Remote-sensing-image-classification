@@ -5,8 +5,6 @@ from torch.utils.data import Dataset, DataLoader, random_split
 from torchvision import transforms, models
 import torch.nn as nn
 import torch.optim as optim
-from torch.optim import lr_scheduler
-from torchsummary import summary
 import matplotlib.pyplot as plt
 from PIL import Image
 import pandas as pd
@@ -118,14 +116,25 @@ def trainValid(model, src_dir, val_set_fraction, batch_size=32, epochs=25):
     lossDeterminer = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=1e-2)
 
-    expLrScheduler = lr_scheduler.StepLR(optimizer, step_size=6, gamma=0.1)
+    epoch = 0
 
-    start = time.time()
+    model_path = os.path.join(src_dir, 'model.tar')
+    if os.path.isfile(model_path):
+        checkpoint = torch.load(model_path)
+        model.load_state_dict(checkpoint['model_state_dict'])
+        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+        epoch = checkpoint['epoch']
+        epoch+=1
+        print('ckpt loaded')
+    else:
+        epoch = 0
+   
+
     history = []
     bestAcc = 0.0
     bestEpoch = 0
 
-    for epoch in range(epochs):
+    while epoch < epochs:
         epochStart = time.time()
         print("Epoch: {}/{}".format(epoch+1, epochs))
         
@@ -196,7 +205,7 @@ def trainValid(model, src_dir, val_set_fraction, batch_size=32, epochs=25):
                 validLoss += loss.item() * inputs.size(0)
 
                 # Calculate validation accuracy
-                ret, predictions = torch.max(outputs.data, 1)
+                _, predictions = torch.max(outputs.data, 1)
                 corrCounts = predictions.eq(labels.data.view_as(predictions))
 
                 # Convert corrCounts to float and then compute the mean
@@ -207,6 +216,14 @@ def trainValid(model, src_dir, val_set_fraction, batch_size=32, epochs=25):
 
                 print("Validation Batch number: {:03d}, Validation: Loss: {:.4f}, Accuracy: {:.4f}".format(j, loss.item(), acc.item()))
             
+        model_path = os.path.join(src_dir, 'model.tar')
+        torch.save({
+            'epoch':epoch,
+            'model_state_dict': model.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict(),
+            }, model_path)
+        print('Saved Model checkpoints')
+
         # Find average training loss and training accuracy
         trainLossAvg = trainLoss/train_length
         trainAccAvg = trainAcc/train_length
@@ -239,7 +256,7 @@ def trainValid(model, src_dir, val_set_fraction, batch_size=32, epochs=25):
     plt.xlabel('Epoch Number')
     plt.ylabel('Loss')
     plt.ylim(0,1)
-    plt.savefig(directory+'lossCurve.png')
+    plt.savefig(src_dir+'lossCurve.png')
     plt.show()
 
     # Plot and save train and validation accuracies
@@ -248,7 +265,7 @@ def trainValid(model, src_dir, val_set_fraction, batch_size=32, epochs=25):
     plt.xlabel('Epoch Number')
     plt.ylabel('Accuracy')
     plt.ylim(0,1)
-    plt.savefig(directory+'accuracyCurve.png')
+    plt.savefig(src_dir+'accuracyCurve.png')
     plt.show()
 
 def computeTestSetAccuracy(model, src_dir):
